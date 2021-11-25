@@ -1,0 +1,18 @@
+Value Filldown HOSTNAME (\S+#)
+Value INTERFAZ (\S+)
+Value CMTS_US_PWR (\d*\.?\d*)
+Value CMTS_US_SNR (\d*\.?\d*)
+Value CMTS_UREFLEC (\d+)
+Value CMTS_TIMING_OFFSET (\d+)
+Value CM_US_PWR (\S+|-)
+Value CM_DS_PWR (\S+|-) 
+Value CM_DS_SNR (\S+|-)
+Value CM_UREFLEC (\S+|-)
+Value CM_TIMING_OFFSET (\S+|-)
+Value LAST_POLLED (\S+)
+Value Required MAC ([A-Fa-f0-9\.]{14})
+
+
+Start
+  ^${HOSTNAME}
+  ^${INTERFAZ}\s+${CMTS_US_PWR}\s+${CMTS_US_SNR}\s+${CMTS_UREFLEC}\s+${CMTS_TIMING_OFFSET}\s+${CM_US_PWR}\s+${CM_DS_PWR}\s+${CM_DS_SNR}\s+${CM_UREFLEC}\s+${CM_TIMING_OFFSET}\s+${LAST_POLLED}\s+${MAC}\s+ -> Record

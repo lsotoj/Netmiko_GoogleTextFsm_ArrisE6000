@@ -1,0 +1,16 @@
+Value Filldown HOSTNAME (\S+#)
+Value INTERFAZ (\d+\/\d+\/\w+)
+Value IF_MAC (\S+)
+Value CONN (\S+)
+Value TOTAL_REGISTERED (\S+)
+Value OPERATING (\S+)
+Value DISABLE (\S+)
+Value INIT (\S+)
+Value OFFLINE (\S+)
+Value PERCENTAGE (\S+)
+Value NODE (\S+)
+
+
+Start
+  ^${HOSTNAME}
+  ^${INTERFAZ}\s+${IF_MAC}\s+${CONN}\s+${TOTAL_REGISTERED}\s+${OPERATING}\s+${DISABLE}\s+${INIT}\s+${OFFLINE}\s+${PERCENTAGE}\s+${NODE} -> Record

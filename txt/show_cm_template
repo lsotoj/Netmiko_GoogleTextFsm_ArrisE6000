@@ -1,0 +1,14 @@
+Value Filldown HOSTNAME (\S+#)
+Value INTERFAZ (\S+)
+Value IF_MAC (\S+)
+Value BONDED (\S+|-)
+Value STATE (\S+)
+Value DOCSIS (\S+|-)
+Value QOS (\S+|-)
+Value CPE (\d+) 
+Value Required MAC ([A-Fa-f0-9\.]{14})
+
+
+Start
+  ^${HOSTNAME}
+  ^${INTERFAZ}\s+${IF_MAC}\s+${BONDED}\s+${STATE}\s+${DOCSIS}\s+${QOS}\s+${CPE}\s+${MAC}\s+ -> Record
