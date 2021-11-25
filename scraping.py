@@ -158,3 +158,7 @@ for ip_cmts in list_of_cmts:
 f_phy.close()
 f_cm.close()
 f_slots.close()
+
+
+
+#validar si se guardan los cambios
