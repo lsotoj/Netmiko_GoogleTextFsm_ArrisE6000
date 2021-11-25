@@ -2,7 +2,7 @@ import textfsm
 import os
 import csv
 #+++++ parsing the data ++++++++
-#function for split the downstream and upstream interface
+#function for split the downstream and upstream slot x/x/x interface from de SHOW PHY command
 def split_interfaz(modem):
     interfaz = modem[1]
     indice =  interfaz.index('-')
@@ -12,7 +12,7 @@ def split_interfaz(modem):
     modem.append(upstream)
     return modem
 
-#function for split the downstream and upstream bonding 
+#function for split the downstream and upstream bonding dwXup from SHOW CABLE MODEM comand.
 def split_bonded(modem):
     bonded = modem[3]
     if bonded != '-':
@@ -29,7 +29,7 @@ def split_bonded(modem):
 
 
 
-#opening the text plain files
+#opening the text plain files with the data extracted by commands with Netmiko
 file_result_path = os.getcwd() + "/txt/show_phy.txt"
 with open(file_result_path, 'r') as data_file:
     file_output_phy = data_file.read()
@@ -44,7 +44,7 @@ with open(file_result_path, 'r') as data_file:
 
 
 
-#opening the templates
+#Opening the templates used by TextFSM to match only the useful data.
 template_path =os.getcwd() + "/txt/show_phy_template"
 with open(template_path, 'r') as template:
     template_object_phy = textfsm.TextFSM(template)
@@ -57,7 +57,8 @@ template_path =os.getcwd() + "/txt/show_slots_template"
 with open(template_path, 'r') as template:
     template_object_slots = textfsm.TextFSM(template)
 
-#parsed data 
+
+#Here's where TextFSM makes his work and extracts only useful data for each file. It's going stored in a list. 
 output_parse_phy = template_object_phy.ParseText(file_output_phy)
 output_parse_cm = template_object_cm.ParseText(file_output_cm)
 output_parse_slots = template_object_slots.ParseText(file_output_slots)
@@ -65,18 +66,27 @@ output_parse_slots = template_object_slots.ParseText(file_output_slots)
 output_float_phy = []
 output_bonded_cm = []
 
+#Appling a garbage collector to the principal array
+for modem in output_parse_phy:
+    del modem[4]
+    del modem[4]
+    del modem[7]
+    del modem[7]
+    del modem[7]
 
 
+
+#Here I'm splitting the slot interface and converting to float point the power level measurements
 for modem in output_parse_phy:
     temporary_array = []
     temporaty_data = 0
     
-    #calling the function to extract the downstream and upstream IF
+    #calling the function to extract the downstream and upstream interfaz slot
     modem = split_interfaz(modem)
     
     for j in range(0, len(modem), 1):
         #Converting to float point the measurements
-        if (j == 3 or j == 6 or j == 7 or j == 8) and (modem[j] != "-"):
+        if (j == 3 or j == 4 or j == 5 or j == 6) and (modem[j] != "-"):
             temporaty_data = float(modem[j])
         else:
             temporaty_data = modem[j]
@@ -84,6 +94,8 @@ for modem in output_parse_phy:
         temporary_array.append(temporaty_data)
     
     output_float_phy.append(temporary_array)
+
+
 
 
 #split the bonded
@@ -94,7 +106,7 @@ for modem in output_parse_cm:
 
 
 for principal_modem in output_float_phy:
-    buscado = principal_modem[12]
+    buscado = principal_modem[7]
     indicador = 0
 
     for bonded_modem in output_bonded_cm:
@@ -117,17 +129,16 @@ for principal_modem in output_float_phy:
         principal_modem.append('-')
             
 
-
 print('BONDED DONDE')
 
 #semaphore
 for modem in output_float_phy:
     status = 'WITHOUT STATUS'
     us_snr = modem[3]
-    us_pwr = modem[6]
-    ds_pwr = modem[7]
-    ds_snr = modem[8]
-    portadoras_up = modem[16]
+    us_pwr = modem[4]
+    ds_pwr = modem[5]
+    ds_snr = modem[6]
+    portadoras_up = modem[11]
 
     
     if us_snr == '-'or us_pwr == '-' or ds_pwr == '-' or ds_snr == '-':
@@ -206,9 +217,9 @@ for modem in output_float_phy:
     modem.append(status)
 
 
-
 with open('GFG', 'w') as fcsv:
     # using csv.writer method from CSV package
     write = csv.writer(fcsv)
     for dato in output_float_phy:
         write.writerow(dato)
+print("TO CSV DONE")
