@@ -61,7 +61,18 @@ with open(template_path, 'r') as template:
 #Here's where TextFSM makes his work and extracts only useful data for each file. It's going stored in a list. 
 output_parse_phy = template_object_phy.ParseText(file_output_phy)
 output_parse_cm = template_object_cm.ParseText(file_output_cm)
-output_parse_slots = template_object_slots.ParseText(file_output_slots)
+slots = template_object_slots.ParseText(file_output_slots)
+print("nomas sale")
+for cm in range(0, 10):
+    print(slots[cm])
+
+listOfDict = {};
+for cm in range(0, 10):
+    cmts = slots[cm][0]
+    slot = slots[cm][1]
+    nodo = slots[cm][2]
+    listOfDict[cmts] = {slot:nodo}
+print(listOfDict)
 
 output_float_phy = []
 output_bonded_cm = []

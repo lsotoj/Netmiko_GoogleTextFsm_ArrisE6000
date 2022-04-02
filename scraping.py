@@ -85,72 +85,72 @@ for ip_cmts in list_of_cmts:
             write_file_slots(nombre_cmts)
 
             net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
-            outputSlot1 = net_connect.send_command('show cable modem summary port slot 1', expect_string = '[#\?$]')
+            outputSlot1 = net_connect.send_command('show interface cable-upstream detail', expect_string = '[#\?$]')
             write_file_slots(outputSlot1)
     except Exception as error:
         print(error.__doc__)
         print(traceback.format_exc())
 
-    #SLOT 2
-    try:
-        with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
-            print('Connected to ' + ip_cmts + ' for SLOT 2')
+    # #SLOT 2
+    # try:
+    #     with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
+    #         print('Connected to ' + ip_cmts + ' for SLOT 2')
 
-            #recording the CMTS name
-            nombre_cmts = net_connect.find_prompt()
-            write_file_slots(nombre_cmts)
+    #         #recording the CMTS name
+    #         nombre_cmts = net_connect.find_prompt()
+    #         write_file_slots(nombre_cmts)
 
-            net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
-            outputSlot2 = net_connect.send_command('show cable modem summary port slot 2', expect_string = '[#\?$]')
-            write_file_slots(outputSlot2)
-    except Exception as error:
-        print(error.__doc__)
-        print(traceback.format_exc())
+    #         net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
+    #         outputSlot2 = net_connect.send_command('show cable modem summary port slot 2', expect_string = '[#\?$]')
+    #         write_file_slots(outputSlot2)
+    # except Exception as error:
+    #     print(error.__doc__)
+    #     print(traceback.format_exc())
 
-    #SLOT 3
-    try:
-        with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
-            print('Connected to ' + ip_cmts + ' for SLOT 3')
+    # #SLOT 3
+    # try:
+    #     with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
+    #         print('Connected to ' + ip_cmts + ' for SLOT 3')
 
-            #recording the CMTS name
-            nombre_cmts = net_connect.find_prompt()
-            write_file_slots(nombre_cmts)
+    #         #recording the CMTS name
+    #         nombre_cmts = net_connect.find_prompt()
+    #         write_file_slots(nombre_cmts)
 
-            net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
-            outputSlot3 = net_connect.send_command('show cable modem summary port slot 3', expect_string = '[#\?$]')
-            write_file_slots(outputSlot3)
-    except Exception as error:
-        print(error.__doc__)
-        print(traceback.format_exc())
+    #         net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
+    #         outputSlot3 = net_connect.send_command('show cable modem summary port slot 3', expect_string = '[#\?$]')
+    #         write_file_slots(outputSlot3)
+    # except Exception as error:
+    #     print(error.__doc__)
+    #     print(traceback.format_exc())
 
-    #SLOT 4
-    try:
-        with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
-            print('Connected to ' + ip_cmts + ' for SLOT 4')
+    # #SLOT 4
+    # try:
+    #     with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
+    #         print('Connected to ' + ip_cmts + ' for SLOT 4')
 
-            #recording the CMTS name
-            nombre_cmts = net_connect.find_prompt()
-            write_file_slots(nombre_cmts)
+    #         #recording the CMTS name
+    #         nombre_cmts = net_connect.find_prompt()
+    #         write_file_slots(nombre_cmts)
 
-            net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
-            outputSlot4 = net_connect.send_command('show cable modem summary port slot 4', expect_string = '[#\?$]')
-            write_file_slots(outputSlot4)
-    except Exception as error:
-        print(error.__doc__)
-        print(traceback.format_exc())
-    #SLOT 5
-    try:
-        with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
-            print('Connected to ' + ip_cmts + ' for SLOT 5')
+    #         net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
+    #         outputSlot4 = net_connect.send_command('show cable modem summary port slot 4', expect_string = '[#\?$]')
+    #         write_file_slots(outputSlot4)
+    # except Exception as error:
+    #     print(error.__doc__)
+    #     print(traceback.format_exc())
+    # #SLOT 5
+    # try:
+    #     with ConnectHandler(ip=ip_cmts, device_type='linux', username=username, password=password) as net_connect:
+    #         print('Connected to ' + ip_cmts + ' for SLOT 5')
 
-            #recording the CMTS name
-            nombre_cmts = net_connect.find_prompt()
-            write_file_slots(nombre_cmts)
+    #         #recording the CMTS name
+    #         nombre_cmts = net_connect.find_prompt()
+    #         write_file_slots(nombre_cmts)
 
-            net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
-            outputSlot5 = net_connect.send_command('show cable modem summary port slot 5', expect_string = '[#\?$]') 
-            write_file_slots(outputSlot5)
-            print("SLOT Done")
+    #         net_connect.send_command('terminal length 0', expect_string = '[#\?$]')
+    #         outputSlot5 = net_connect.send_command('show cable modem summary port slot 5', expect_string = '[#\?$]') 
+    #         write_file_slots(outputSlot5)
+    #         print("SLOT Done")
     except Exception as error:
         print(error.__doc__)
         print(traceback.format_exc())
