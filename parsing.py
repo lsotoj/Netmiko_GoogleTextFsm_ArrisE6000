@@ -62,6 +62,9 @@ with open(template_path, 'r') as template:
 output_parse_phy = template_object_phy.ParseText(file_output_phy)
 output_parse_cm = template_object_cm.ParseText(file_output_cm)
 slots = template_object_slots.ParseText(file_output_slots)
+
+
+#Trying to see what the array contains
 print("nomas sale")
 for cm in range(0, 10):
     print(slots[cm])
