@@ -1,3 +1,3 @@
 # Netmiko_GoogleTextFsm_ArrisE6000  
 ## Hello :v:
-Script to extract optimized inoformation of the Arris CMTS.
+A python script to extract information in an optimized and fastly way from CMTS (Cable Modem Termination System) Arris E6000. Helping administrators to make consults in general form when is a general issue with the network or simply wants to optimize and analyze the data or client terminals.
